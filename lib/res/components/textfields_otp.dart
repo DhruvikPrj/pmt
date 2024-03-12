@@ -1,0 +1,51 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
+class OtpTextField extends StatelessWidget {
+  final TextEditingController otpController;
+  final int textLength;
+
+  const OtpTextField({
+    super.key,
+    required this.otpController,
+    this.textLength = 1, // Default to single character
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 68,
+      width: 54,
+      child: TextFormField(
+        controller: otpController,
+        onChanged: (value) {
+          if (value.length == 1) {
+            FocusScope.of(context).nextFocus();
+          }
+        },
+        style: Theme.of(context).textTheme.bodyMedium,
+        keyboardType: TextInputType.number,
+        inputFormatters: [
+          LengthLimitingTextInputFormatter(1),
+          FilteringTextInputFormatter.digitsOnly,
+        ],
+        decoration: const InputDecoration(
+          enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.all(
+                Radius.circular(4.0),
+              ),
+              borderSide: BorderSide(color: Colors.blue)),
+          focusedBorder:
+              OutlineInputBorder(borderSide: BorderSide(color: Colors.blue)),
+          border: OutlineInputBorder(
+              borderRadius: BorderRadius.all(
+                Radius.circular(4.0),
+              ),
+              borderSide: BorderSide(color: Colors.blue)),
+        ),
+        cursorColor: Colors.blue,
+      ),
+    );
+  }
+}

@@ -18,7 +18,7 @@ class _OtpFieldsState extends State<OtpFields> {
   @override
   Widget build(BuildContext context) {
     return OtpTextField(
-      hasCustomInputDecoration: true,
+      //hasCustomInputDecoration: true,
       numberOfFields: 4,
       autoFocus: true,
       decoration: const InputDecoration(

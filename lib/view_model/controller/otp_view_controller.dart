@@ -7,17 +7,26 @@ class OtpViewController extends GetxController {
 //   //user preference
 //   UserPreferences userPreferences = UserPreferences();
 //   //
-  final otpController = TextEditingController().obs;
+  List<TextEditingController> otpControllers =
+      List.generate(4, (index) => TextEditingController());
 
   final otpFocusNode = FocusNode().obs;
 
-//   RxBool loading = false.obs;
+  void validateOtp() {
+    // String otp = '';
+    // for (var controller in otpControllers) {
+    // otp += controller.text;
+  }
+  // var emailController = ;
+  // var res = EmailAuth.(receiverMail: emailController.text, userOTP: otp);
+  // if (res) {
+  //   print('OTP verified successfully');
+  // } else {
+  //   print('OTP verification failed');
+  // }
+}
 
-  void loginApi() {
-    //loading.value = true;
-    Map data = {
-      "email": otpController.value.text,
-    };
+//   RxBool loading = false.obs;
 
 //     _api.loginApi(data).then((value) {
 //       loading.value = false;
@@ -43,5 +52,4 @@ class OtpViewController extends GetxController {
 //       print(error.toString());
 //     });
 //   }
-  }
-}
+

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
-import 'package:http/http.dart' as http;
-import 'package:pmt/data/network/network_api.dart';
-import 'package:pmt/res/app_url/app_url.dart';
+import 'package:pinput/pinput.dart';
+import 'package:get/get.dart';
+import 'package:pmt/view_model/controller/email_auth_controller.dart';
 
 class OtpFields extends StatefulWidget {
   const OtpFields({super.key});
@@ -12,38 +11,17 @@ class OtpFields extends StatefulWidget {
 }
 
 class _OtpFieldsState extends State<OtpFields> {
-//
-  final _api = NetWorkApiServices();
+  //
+  final emailAuthController = Get.put(EmailAuthController());
 
   @override
   Widget build(BuildContext context) {
-    return OtpTextField(
-      //hasCustomInputDecoration: true,
-      numberOfFields: 4,
-      autoFocus: true,
-      decoration: const InputDecoration(
-        enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(
-            color: Colors.blue,
-          ),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(
-            color: Colors.blue,
-          ),
-        ),
-      ),
-      borderColor: Colors.blue,
-      //set to true to show as box or false to show as dash
-      showFieldAsBox: true,
-      //runs when a code is typed in
-      onCodeChanged: (String code) {
-        //handle validation or checks here
+    return Pinput(
+      length: 6, // Change this to your desired OTP length
+      onChanged: (value) {
+        Get.find<EmailAuthController>().otpController.value.text = value;
       },
-      //runs when every textfield is filled
-      onSubmit: (String verificationCode) {
-        _api.postApi(verificationCode, AppAPIUrl.loginApiUrl);
-      }, // end onSubmit
     );
   }
 }
+//dhruvik.prajapati@bypeopletechnologies.com

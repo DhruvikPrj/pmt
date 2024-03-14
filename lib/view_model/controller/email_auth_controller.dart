@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pmt/data/repository/login_repository.dart';
-// import 'package:pmt/view_model/controller/shared_preference/user_preferences.dart';
 
-class LoginViewController extends GetxController {
+class EmailAuthController extends GetxController {
   //
   final _api = LoginRepository();
-  //user preference
-  // UserPreferences userPreferences = UserPreferences();
-  //
+
+
+
   final emailcontroller = TextEditingController().obs;
+  final otpController = TextEditingController().obs;
 
   final emailFocusNode = FocusNode().obs;
 
   RxBool loading = false.obs;
+
+  String? email; // Store email after successful login
 
   void loginApi() {
     loading.value = true;
@@ -25,24 +27,30 @@ class LoginViewController extends GetxController {
       loading.value = false;
       if (value['message'] == 'password is incorrect' ||
           value['message'] == 'User not exits!') {
-        //print(value);
+        print(value);
       } else {
-        //
-        // isLoggedIn = true;
-        //
-        // userPreferences
-        //     .saveUser(userModel)
-        //     .then((value) {})
-        //     .onError((error, stackTrace) {
-        //   print(error.toString());
-        // });
-        //print(value);
+        print(value['data']['user']['verificationCode']);
+        email = data['email']; // Assign email only if successful
+        print(email);
       }
     }).onError((error, stackTrace) {
       loading.value = false;
-      print(error.toString());
-      // Text(error.toString());
-      print(error.toString());
+      // print(error.toString());
     });
+  }
+
+  void validateOtp(String code) {
+    if (email != null) {
+      // Check if email is available before using
+      Map data = {
+        "email": email,
+        "code": code,
+      };
+      _api.verifyLoginApi(data).then((value) {
+        print(value);
+      });
+    } else {
+      print("Email not available yet. Call loginApi first.");
+    }
   }
 }

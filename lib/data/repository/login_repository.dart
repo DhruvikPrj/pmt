@@ -8,4 +8,9 @@ class LoginRepository {
     dynamic response = _apiServices.postApi(data, AppAPIUrl.loginApiUrl);
     return response;
   }
+
+  Future<dynamic> verifyLoginApi(var data) async {
+    dynamic response = _apiServices.postApi(data, AppAPIUrl.verifyLoginUrl);
+    return response;
+  }
 }

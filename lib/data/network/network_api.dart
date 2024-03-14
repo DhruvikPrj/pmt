@@ -26,6 +26,7 @@ class NetWorkApiServices extends BaseApiServices {
     return responseJson;
   }
 
+  @override
   Future<dynamic> postApi(var data, String url) async {
     if (kDebugMode) {
       print(url);

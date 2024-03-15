@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pmt/routes/routes.dart';
 import 'package:pmt/view/login_screen.dart';
 
 void main() {
@@ -17,8 +18,8 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
-        useMaterial3: true,
       ),
+      getPages: AppRoutes.appRoutes(),
       home: const LoginScreen(),
     );
   }

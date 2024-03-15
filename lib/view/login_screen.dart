@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:pmt/res/components/buttons.dart';
-import 'package:pmt/view/otp_screen.dart';
+import 'package:pmt/routes/routes_name.dart';
 import 'package:pmt/view_model/controller/email_auth_controller.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -14,14 +14,10 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   //
-  EmailAuthController emailAuthController = EmailAuthController();
+  final emailAuthController = Get.put(EmailAuthController());
   final _formKey = GlobalKey<FormState>();
 
-  @override
-  void dispose() {
-    emailAuthController.dispose();
-    super.dispose();
-  }
+  
 
   @override
   Widget build(BuildContext context) {
@@ -107,10 +103,10 @@ class _LoginScreenState extends State<LoginScreen> {
                     title: "Log In",
                     onPress: () {
                       if (_formKey.currentState!.validate()) {
-                        emailAuthController.loginApi();
-                        Get.to(const OtpScreen());
+                        emailAuthController.sendOtp();
+                        Get.toNamed(RouteName.otpScreen);
                       } else {
-                        return;
+                        Get.back();
                       }
                     },
                     textColor: Colors.white,

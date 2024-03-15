@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pmt/res/components/buttons.dart';
-import 'package:pmt/res/components/otp_fields.dart';
+import 'package:pinput/pinput.dart';
 import 'package:pmt/view_model/controller/email_auth_controller.dart';
 
 class OtpScreen extends StatefulWidget {
@@ -62,7 +62,10 @@ class _OtpScreenState extends State<OtpScreen> {
                   const SizedBox(
                     height: 20,
                   ),
-                  const OtpFields(),
+                  Pinput(
+                    controller: emailAuthController.otpController.value,
+                    length: 4, // Change this to your desired OTP length
+                  ),
                   const SizedBox(
                     height: 20,
                   ),

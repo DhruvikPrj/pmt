@@ -1,19 +1,42 @@
 import 'package:flutter/material.dart';
 
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
-  @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Text("Welcome to Homescreen"),
+    return PopScope(
+      onPopInvoked: (didPop) => Future(() => false),
+      child: const Scaffold(
+        body: Center(
+          child: Text("Welcome to Homescreen"),
+        ),
       ),
     );
   }
 }
+
+//Padding(
+      //   padding: EdgeInsets.all(12.0),
+      //   child: Row(
+      //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      //     children: [
+      //       IconButton(
+      //         onPressed: () {},
+      //         icon: const Icon(Icons.home),
+      //       ),
+      //       IconButton(
+      //         onPressed: () {},
+      //         icon: const Icon(Icons.dashboard),
+      //       ),
+      //       IconButton(
+      //         onPressed: () {},
+      //         icon: const Icon(Icons.notifications),
+      //       ),
+      //       IconButton(
+      //         onPressed: () {},
+      //         icon: const Icon(Icons.account_circle),
+      //       ),
+      //     ],
+      //   ),
+      // ),

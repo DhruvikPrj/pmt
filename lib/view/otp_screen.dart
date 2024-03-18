@@ -97,7 +97,9 @@ class _OtpScreenState extends State<OtpScreen> {
                       //   width: 5,
                       // ),
                       TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          emailAuthController.sendOtp();
+                        },
                         child: Text(
                           "Resend",
                           style: Theme.of(context)

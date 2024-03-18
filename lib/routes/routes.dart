@@ -1,6 +1,5 @@
 import 'package:get/get.dart';
 import 'package:pmt/routes/routes_name.dart';
-import 'package:pmt/view/home_screen.dart';
 import 'package:pmt/view/login_screen.dart';
 import 'package:pmt/view/navigationBar_screen.dart';
 import 'package:pmt/view/otp_screen.dart';
@@ -27,7 +26,7 @@ class AppRoutes {
         //   transitionDuration: const Duration(seconds: 1),
         // ),
         GetPage(
-          page: () => NavigationBarScreen(),
+          page: () => const NavigationBarScreen(),
           name: RouteName.navBarScreen,
           transition: Transition.rightToLeftWithFade,
           transitionDuration: const Duration(seconds: 1),

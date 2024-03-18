@@ -38,7 +38,7 @@ class _LoginScreenState extends State<LoginScreen> {
               child: Column(
                 children: [
                   Image.asset(
-                    'assets/images/byptLogo.png',
+                    'images/byptLogo.png',
                     width: 200,
                   ),
                   const SizedBox(
